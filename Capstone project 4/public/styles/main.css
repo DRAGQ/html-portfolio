@@ -1,0 +1,88 @@
+body {
+    margin: 0px;
+}
+
+.container {
+    min-height: 100vh;
+    background-color: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(255,164,164,1) 50%, rgba(252,176,69,1) 100%);
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.box2 {
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.box1 {
+    height: 550px;
+    width: 700px;
+    min-width: 400px; 
+}
+
+img {
+    border-radius: 5%;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: inherit;
+    border: 0;
+    line-height: 1;
+    padding: .75em 1.5em;
+    
+    --clr: #386397;
+    --outline: 2px solid var(--clr);
+    color: var(--clr);
+    outline: var(--outline);
+    border: var(--outline);
+    outline-offset: -2px;
+    transition: outline-offset 200ms ease;
+    border-radius: 50%;
+    margin: 0px 5px;
+}
+.btn:hover,
+.btn:focus {
+    outline: var(--outline);
+    outline-offset: 2px;
+}
+
+.btn-1 {
+    background: DarkOrange;
+}
+
+.btn-2 {
+    background: Coral;
+}
+
+.btn-3 {
+    background: DeepPink;
+}
+
+h2, p {
+    text-align: center;
+    text-shadow:
+    1px 1px 1px DarkOrange,
+    2px 2px 1px red;
+}
+h2 {
+    color: Brown;
+    font-family: "Dancing Script", cursive;
+    font-size: 250%;
+}
+
+p {
+    color: DeepPink;
+    font-size: 150%;
+    font-family: "Trebuchet MS", Tahoma, sans-serif;
+}

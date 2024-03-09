@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box1">   
+            <% if (locals.animalImg) { %>
+                <img src="<%= animalImg %>">
+                <% } else {%>
+                    <h2>Choose button to see picture of animal</h2>
+                    <p>I wish you a beautiful day</p>
+                    <% } %>
+        </div>
+        <div class="box2">
+            <form method="post" action="/animal">
+                <button class="btn btn-1" name="cat" value="cat">Cat</button> 
+                <button class="btn btn-2" name="dog" value="dog">Dog</button> 
+                <button class="btn btn-3" name="fox" value="fox">Fox</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
