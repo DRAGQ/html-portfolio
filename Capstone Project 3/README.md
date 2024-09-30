@@ -1,1 +1,20 @@
+CEATE TABLE users (
+	id SERIAL PRIMARY KEY NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	username VARCHAR(50) NOT NULL,
+	pseudoname VARCHAR(50) NOT NULL UNIQUE
+)
 
+CEATE TABLE posts (
+	id SERIAL PRIMARY KEY NOT NULL,
+	title VARCHAR(60) NOT NULL,
+	content VARCHAR(3000) NOT NULL,
+	user_id INTEGER REFERENCES users(id),
+	post_date DATE NOT NULL DEFAULT CURRENT_DATE
+)
+
+CEATE TABLE likes (
+	user_id INTEGER REFERENCES users(id),
+	post_id INTEGER REFERENCES posts(id),
+	post_like INTEGER NOT NULL
+)
