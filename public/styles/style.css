@@ -1,0 +1,401 @@
+html, body, .bottom{
+    min-height: 100vh;
+}
+
+ .indexBody {
+    background-color: grey; 
+}
+
+.formButtonFirstHead {
+    color: white;
+    background-color: transparent;
+    border: 0px;
+}
+
+.formButtonSecondHeader {
+    display: block;
+    margin-left: 20px;
+}
+
+.buttonShowInputFirstHead {
+    margin-bottom: 10px;
+}
+
+#sideHeaderBox {
+    position: fixed;
+}
+
+#sideHeaderBox > hr {
+    width: 248px;
+}
+
+.sideBarSecondHead {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+     
+}
+
+.container {
+    margin-top: 30px;
+    margin-left: 100px;
+}
+
+.box {
+    min-height: 200px;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px 10px;
+    background-color: rgba(0,0,0,0.5);
+    border: solid white 1px;
+}
+
+.box > p, .box > h1 {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.dateAndAuthorRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    min-height: 40px;
+}
+
+.box > hr {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+form {
+    text-align: center;
+}
+
+p {
+    font-family: "Sriracha", cursive;
+    color: white;  
+}
+
+a {
+    text-decoration: none;
+  }
+
+hr {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.dateLikeDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.likeButton {
+    margin-left: 10px;
+    padding-right: 5px;
+    border-radius: 50% 0% 0% 50%;
+}
+
+.dislikeButton {
+    width: 40px;
+    padding-left: 0px;
+    border-radius: 0% 50% 50% 0%;
+}
+
+.likeButton > p, .dislikeButton > p {
+    margin-bottom: 0px;
+    margin-left: 3px;
+}
+
+.likeButton:hover, .dislikeButton:hover {
+    background-color: black;
+}
+
+#leftPRow {
+    margin: 0px;
+    opacity: 0.7;
+}
+
+.likeButton, .dislikeButton {
+    height: 30px;
+    min-width: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: DimGray;
+    color: white;
+    border: 0px;
+}
+
+.likeButton > svg, .dislikeButton > svg {
+    margin-left: 5px;
+}
+
+.rightPRow {
+    margin: 0px;
+    opacity: 0.7;
+    float: right; 
+}
+
+#rightPRRow {
+    margin: 0px;
+    opacity: 1;
+}
+
+.title {
+    color: DarkSalmon ;
+    padding-top: 20px;
+    font-family: "Amita", serif;
+}
+
+#updatebtn {
+    padding: 7px;
+    margin-right: 5px;
+    background-color: CornflowerBlue;
+    color: white;
+    font-weight: 600;
+    border-radius: 50%;
+    border-width: 0px;
+    opacity: 80%;
+}
+
+#deletebtn {  
+    padding: 7px 10px;
+    background-color: IndianRed;
+    color: white;
+    font-weight: 600 ;
+    border-radius: 50%;
+    border-width: 0px;
+    opacity: 80%;
+}
+
+.svgSpace {
+    margin-right: 10px;
+}
+
+#create, .post {
+    text-align: center;
+    font-weight: border;
+    color: DarkSalmon;
+}
+
+.findPostsForm {
+    display: none;
+    width: 250px;
+    color: white;
+    background-color: transparent;
+}
+
+#selectFindAuthor {
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    padding-bottom: 2px;
+}
+
+.optionFindAuthor {
+    color: black;
+}
+
+#buttonFindAuthor {
+    width: 203.8px;
+    padding: 0px;
+    border: 1px solid white;
+}
+
+@media screen and (max-width: 1400px) {
+    .container {
+        min-width: auto;
+        margin-left: 3%;
+    }
+    #selectFindAuthor {
+        border: 1px solid white;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #rightPLRow, #rightPRRow {
+        display: none;
+    }
+
+    }
+
+@media screen and (min-width: 992px) {
+    #authorRightCorner {
+        display: none;
+    }
+
+    }
+    
+
+@media screen and (max-width:768px) {
+    .container { 
+        min-width: 98%;   
+        margin-left: 1%;     
+    }
+
+    #selectFindAuthor {
+        border: 1px solid white;
+    }
+}
+
+
+/*Login and Register*/
+
+.logoutButton, .formButton {
+    color: white;
+    background-color: transparent;
+    border: 0px;
+    margin-bottom: 10px;
+}
+
+.loginBody {
+    background-color: black;
+}
+
+.logContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logAuthBox {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    width: 300px;
+    height: 250px;
+}
+
+.logH1 {
+    margin-top: 70px;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.loginButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 300px;
+    height: 45px;
+    background-color: black;
+    border: 1px solid gray;
+    padding: 0px;
+    border-radius: 7%/50%;
+}
+
+.imgLogo {
+    width: 25px;
+    height: 25px;
+    margin: 0px 30px;
+}
+
+.loginButton > p {
+    margin-bottom: 0px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.5px;
+}
+
+.logContainer > hr {
+    width: 500px;
+    height: 100%;
+    margin: 0px;
+    border-color: white;
+}
+
+#logAuthBox {
+    height: 450px;
+}
+
+.logAuthBox > label {
+    color: white;
+    align-self: flex-start;
+}
+
+.logAuthBox > input {
+    height: 45px;
+    padding: 0px;
+    background-color: #292727;
+    color: #ddd4d4;
+    border-radius: 5px;
+    border: 1px solid gray;
+    text-indent: 10px;
+    margin-bottom: 10px;
+}
+
+#registerButton {
+    margin-left: 5px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+#errMsgDiv {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    margin-top: -10px;
+    margin-bottom: 0px;
+}
+
+#errMsg {
+    display: inline;
+    color: red;
+}
+
+.confirmPassword {
+    display: none;
+}
+
+.form-check {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+ 
+}
+
+#signUpToggleButton {
+    text-decoration: underline;
+}
+
+#flexSwitchCheckDefault {
+    border: 0px;
+    accent-color: currentcolor;
+}
+
+#flexSwitchCheckDefault:checked {
+    background-color: #4dc05d;
+}
+
+.form-check-label {
+    color: white;
+}
+
+#submitButton {
+    display:table-cell;
+    background-color: #4dc05d;
+    font-family: "Roboto", sans-serif;
+    border: 0px;
+}
+
+.sendUsertoRegisterPage {
+    margin-top: 10px;
+    padding: 20px;
+    padding-bottom: 40px;
+    color: gray;
+}
+
+.sendUsertoRegisterPage > a {
+    color: white;
+    text-decoration: underline;
+}

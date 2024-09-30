@@ -1,0 +1,168 @@
+<%- include("partials/header.ejs") %>
+<title>Post</title>
+</head>
+<body class="indexBody">
+<!--First header-->
+<header class="pt-1 text-bg-dark d-md-none">
+  <div class="container mt-3">
+    <div class="pb-3 d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <div class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="white" class="bi bi-arrow-up-left-square svgSpace" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm10.096 8.803a.5.5 0 1 0 .707-.707L6.707 6h2.768a.5.5 0 1 0 0-1H5.5a.5.5 0 0 0-.5.5v3.975a.5.5 0 0 0 1 0V6.707z"/>
+        </svg></a>
+        <form method="get" action="/">
+        <button class="formButtonFirstHead">
+          Website
+        </button>
+        <button class="formButtonFirstHead" formaction="/new">
+          New post
+        </button>
+        </form>
+        <form method="post" action="/findPosts">
+          <button class="formButtonFirstHead">My posts</button>
+        </form>
+        <button class="formButtonFirstHead buttonShowInputFirstHead findPostsButton">Find posts</button>
+        <% if (!locals.userName) {%>
+          <form method="get" action="/login">
+            <button class="logoutButton">Login</button>
+          </form>
+          <% } else { %>
+            <form method="post" action="/logout">
+              <button class="logoutButton">Logout</button>
+            </form>
+            <% } %>
+        <form method="post" action="findPosts" class="findPostsForm">
+          <select id="selectFindAuthor" name="authors" required> 
+            <option class="optionFindAuthor" value="">--Please choose author--</option>
+            <% for (i in locals.allAuthors) { %>
+              <option class="optionFindAuthor" value="<%= allAuthors[i] %>"><%= allAuthors[i] %></option>
+              <% } %>
+          </select>
+          <button id="buttonFindAuthor" type="submit">Find</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</header> 
+
+
+<!--Second header-->
+<main class="d-flex flex-nowrap bottom">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark d-none d-md-block" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-arrow-up-left-square svgSpace" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm10.096 8.803a.5.5 0 1 0 .707-.707L6.707 6h2.768a.5.5 0 1 0 0-1H5.5a.5.5 0 0 0-.5.5v3.975a.5.5 0 0 0 1 0V6.707z"/>
+        </svg>
+        <span class="fs-4">Blog</span>
+      </a>
+      <hr>
+      <div class="sideBarSecondHead">
+          <form method="get" action="/">
+            <button class="formButton formButtonSecondHeader">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+              </svg>
+              Website
+            </button>
+            <button class="formButton formButtonSecondHeader" formaction="/new">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cloud-plus" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"/>
+                <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+              </svg>
+              New post
+            </button>
+          </form>
+          <form method="post" action="/findPosts">
+            <button class="formButton formButtonSecondHeader">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-postcard" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm7.5.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0zM2 5.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1H2.5a.5.5 0 0 1-.5-.5M10.5 5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM13 8h-2V6h2z"/>
+              </svg>
+              My posts
+            </button>
+          </form>
+            <button class="formButton formButtonSecondHeader findPostsButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018"/>
+                <path d="M13 6.5a6.47 6.47 0 0 1-1.258 3.844q.06.044.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11"/>
+              </svg>
+              Find posts
+            </button>
+            <form method="post" action="findPosts" class="findPostsForm">
+              <select id="selectFindAuthor" name="authors" required> 
+                <option class="optionFindAuthor" value="">--Please choose author--</option>
+                <% for (i in locals.allAuthors) { %>
+                  <option class="optionFindAuthor" value="<%= allAuthors[i] %>"><%= allAuthors[i] %></option>
+                  <% } %>
+              </select>
+              <button id="buttonFindAuthor" type="submit">Find</button>
+            </form>
+            <% if (!locals.userName) {%>
+            <form method="get" action="/login">
+              <button class="logoutButton formButtonSecondHeader">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                </svg>
+                Login
+              </button>
+            </form>
+          <% } else { %>
+            <form method="post" action="/logout">
+              <button  class="logoutButton formButtonSecondHeader">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                </svg>
+                Logout
+              </button>
+            </form>
+            <% } %>
+      </div>
+      <hr>
+      <span class="fs-4"><%= locals.userName %></span>  
+    </div>
+    <div class="container">
+      <% if (locals.content) { %>
+        <form action="/update/<%= content.id %>" method="post">
+          <h1 class="post">Post <%= content.id %></h1>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="title"id="floatingInput1" placeholder="Title" value="<%= content.title %>" minlength="5" maxlength="60" required>
+            <label for="floatingInput1">Title</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Leave a comment here" name="content" id="floatingTextarea1" style="height: 100px" value="<%= content.content %>" minlength="5" maxlength="3000" required><%= content.content %></textarea>
+            <label for="floatingTextarea1">Content</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="author" id="floatingInput2" placeholder="Author" value="<%= content.author %>" minlength="2" maxlength="60" required>
+            <label for="floatingInput2">Author</label>
+          </div>
+            <% if (act === "update") { %>
+            <button type="submit" class="btn btn-warning">Update</button>
+            <% } else { %>
+            <button type="submit" class="btn btn-danger" formaction="/delete/<%= content.id %>">Delete</button>
+            <% } %>
+        </form>
+      <% } else { %>
+        <h1 id="create">Create new post</h1>
+        <form action="/create" method="post">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="title" id="floatingInput3" placeholder="Title" minlength="5" maxlength="60" required>
+            <label for="floatingInput3">Title</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="Content" name="content" id="floatingTextarea2" style="height: 100px" minlength="5" maxlength="3000" required></textarea>
+            <label for="floatingTextarea2">Content</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="author" id="floatingInput4" placeholder="Author" value="<%= locals.userName %>" minlength="2" maxlength="60" required>
+            <label for="floatingInput4">Author</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+        <% } %>
+    </div>
+  </main>
+  <script src="script/script.js"></script>
+    <%- include("partials/footer.ejs") %>
